@@ -4,6 +4,7 @@ const rules=document.getElementById('rules');
 const canvas=document.getElementById('canvas');
 const ctx=canvas.getContext('2d');
 let score=0;
+let highScore=localStorage.getItem('highscore');
 const brickColumns=9;
 const brickRows=5;
 
@@ -132,6 +133,7 @@ function moveBall(){
 
     //Hit Bottom Wall
     if(ball.y + ball.size > canvas.height){
+        setHighScore();
         showAllBricks();
         score=0;
         ball.x=canvas.width/2;
@@ -139,6 +141,10 @@ function moveBall(){
     }
 }
 
+//Sets High Score
+function setHighScore(){
+    if(score>highScore) localStorage.setItem('highscore',score);
+}
 
 //Increase Score
 function increaseScore(){
@@ -173,6 +179,7 @@ function draw(){
 function drawScore(){
     ctx.font='20px Arial',
     ctx.fillText(`Score: ${score}`,canvas.width-100,30);
+    ctx.fillText(`High Score: ${highScore}`,30,30);
 }
 
 
