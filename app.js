@@ -138,12 +138,16 @@ function moveBall(){
         score=0;
         ball.x=canvas.width/2;
         ball.y=canvas.height/2;
+        drawScore();
     }
 }
 
 //Sets High Score
 function setHighScore(){
-    if(score>highScore) localStorage.setItem('highscore',score);
+    if(score>highScore){
+        highScore=score;
+        localStorage.setItem('highscore',score);
+    }
 }
 
 //Increase Score
